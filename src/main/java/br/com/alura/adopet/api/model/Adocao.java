@@ -2,6 +2,7 @@ package br.com.alura.adopet.api.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import org.hibernate.validator.constraints.br.CPF;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
@@ -28,7 +29,18 @@ public class Adocao {
     @Enumerated(EnumType.STRING)
     private StatusAdocao status;
 
+    @Column(name = "justificativa_status")
     private String justificativaStatus;
+
+    public Adocao(Tutor tutor, Pet pet, String motivo) {
+        this.tutor = tutor;
+        this.pet = pet;
+        this.motivo = motivo;
+        this.status = StatusAdocao.AGUARDANDO_AVALIACAO;
+        this.data = LocalDateTime.now();
+    }
+
+    public Adocao(){}
 
     @Override
     public boolean equals(Object o) {
@@ -43,4 +55,12 @@ public class Adocao {
         return Objects.hash(id);
     }
 
+    public void marcarAprovado() {
+        this.status = StatusAdocao.APROVADO;
+    }
+
+    public void marcarComoReprovada(String justificativa) {
+        this.status = StatusAdocao.REPROVADO;
+        this.justificativaStatus = justificativa;
+    }
 }
