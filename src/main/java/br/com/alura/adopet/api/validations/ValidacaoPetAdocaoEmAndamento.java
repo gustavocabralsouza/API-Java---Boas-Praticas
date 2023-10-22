@@ -13,15 +13,15 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
-public class ValidacaoPetAdocaoEmAndamento {
+public class ValidacaoPetAdocaoEmAndamento implements ValidacaoSolicitacaoAdocao {
 
     @Autowired
     private PetRepository petRepository;
     @Autowired
     private AdocaoRepository repository;
 
-
-    public void validarTutorDisponivel(SolicitacaoAdocaoDto dto) {
+    @Override
+    public void validar(SolicitacaoAdocaoDto dto) {
         Pet pet = petRepository.getReferenceById(dto.idPet());
         List<Adocao> adocoes = repository.findAll();
         for (Adocao a : adocoes) {
