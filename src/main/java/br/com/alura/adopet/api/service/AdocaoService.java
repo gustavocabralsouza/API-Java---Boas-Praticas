@@ -50,7 +50,7 @@ public class AdocaoService {
                 if (a.getPet() == pet && a.getStatus() == StatusAdocao.AGUARDANDO_AVALIACAO) {
                     throw new ValidacaoExcpetion("Pet já está aguardando avaliação para ser adotado!");
 
-                }
+                }git s
             }
             for (Adocao a : adocoes) {
                 int contador = 0;
@@ -62,6 +62,7 @@ public class AdocaoService {
                 }
             }
         }
+
 
         Adocao adocao = new Adocao();
         adocao.setData(LocalDateTime.now());
