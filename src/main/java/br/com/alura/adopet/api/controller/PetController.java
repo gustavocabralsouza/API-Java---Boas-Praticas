@@ -15,9 +15,6 @@ import java.util.List;
 public class PetController {
 
     @Autowired
-    private PetRepository repository;
-
-    @Autowired
     private PetService petService;
 
     @GetMapping

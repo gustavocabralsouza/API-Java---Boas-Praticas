@@ -33,6 +33,14 @@ public class Abrigo {
     @OneToMany(mappedBy = "abrigo", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Pet> pets;
 
+    public Abrigo(String nome, String telefone, String email) {
+        this.nome = nome;
+        this.telefone = telefone;
+        this.email = email;
+    }
+    public Abrigo() {}
+
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
