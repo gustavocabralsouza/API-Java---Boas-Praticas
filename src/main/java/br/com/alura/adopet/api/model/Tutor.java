@@ -33,6 +33,21 @@ public class Tutor {
     @OneToMany(mappedBy = "tutor")
     private List<Adocao> adocoes;
 
+    public Tutor(String nome, String telefone, String email) {
+        this.nome = nome;
+        this.telefone = telefone;
+        this.email = email;
+    }
+
+    public Tutor(String nome, String telefone, String email, Long id) {
+        this.nome = nome;
+        this.telefone = telefone;
+        this.email = email;
+        this.id = id;
+    }
+
+    public Tutor() {}
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
