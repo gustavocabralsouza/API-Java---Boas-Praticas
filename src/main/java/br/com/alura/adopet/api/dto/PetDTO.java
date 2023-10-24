@@ -1,15 +1,12 @@
 package br.com.alura.adopet.api.dto;
 
-import br.com.alura.adopet.api.model.Abrigo;
 import br.com.alura.adopet.api.model.Pet;
-import jakarta.validation.Valid;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
+import br.com.alura.adopet.api.model.TipoPet;
 
-public record PetDTO(@NotNull Abrigo abrigo, @NotNull Boolean adotado, @NotNull Pet pet) {
-    public void abrigo(Abrigo abrigo) {
+public record PetDto(Long id, TipoPet tipo, String nome, String raca, Integer idade) {
+
+    public PetDto(Pet pet) {
+        this(pet.getId(), pet.getTipo(), pet.getNome(), pet.getRaca(), pet.getIdade());
     }
 
-    public void adotado(boolean b) {
-    }
 }

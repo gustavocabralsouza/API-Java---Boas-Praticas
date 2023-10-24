@@ -1,15 +1,12 @@
 package br.com.alura.adopet.api.model;
 
 import jakarta.persistence.*;
-import lombok.Data;
-import org.hibernate.validator.constraints.br.CPF;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Entity
 @Table(name = "adocoes")
-@Data
 public class Adocao {
 
     @Id
@@ -29,7 +26,6 @@ public class Adocao {
     @Enumerated(EnumType.STRING)
     private StatusAdocao status;
 
-    @Column(name = "justificativa_status")
     private String justificativaStatus;
 
     public Adocao(Tutor tutor, Pet pet, String motivo) {
@@ -55,7 +51,39 @@ public class Adocao {
         return Objects.hash(id);
     }
 
-    public void marcarAprovado() {
+    public Long getId() {
+        return id;
+    }
+
+    public LocalDateTime getData() {
+        return data;
+    }
+
+    public Tutor getTutor() {
+        return tutor;
+    }
+
+    public Pet getPet() {
+        return pet;
+    }
+
+    public void setPet(Pet pet) {
+        this.pet = pet;
+    }
+
+    public String getMotivo() {
+        return motivo;
+    }
+
+    public StatusAdocao getStatus() {
+        return status;
+    }
+
+    public String getJustificativaStatus() {
+        return justificativaStatus;
+    }
+
+    public void marcarComoAprovada() {
         this.status = StatusAdocao.APROVADO;
     }
 

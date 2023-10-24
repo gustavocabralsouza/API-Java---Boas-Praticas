@@ -1,7 +1,11 @@
 package br.com.alura.adopet.api.dto;
 
-import jakarta.validation.constraints.NotBlank;
+import br.com.alura.adopet.api.model.Abrigo;
 
-public record AbrigoDTO(@NotBlank String nome, @NotBlank String telefone, @NotBlank String email) {
+public record AbrigoDto(Long id, String nome) {
+
+    public AbrigoDto(Abrigo abrigo) {
+        this(abrigo.getId(), abrigo.getNome());
+    }
 
 }
