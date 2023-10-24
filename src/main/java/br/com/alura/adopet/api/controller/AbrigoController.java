@@ -38,7 +38,7 @@ public class AbrigoController {
         try {
             abrigoService.cadatrar(dto);
             return ResponseEntity.ok().build();
-        } catch (ValidacaoExc exception) {
+        } catch (ValidacaoException exception) {
             return ResponseEntity.badRequest().body(exception.getMessage());
         }
     }
