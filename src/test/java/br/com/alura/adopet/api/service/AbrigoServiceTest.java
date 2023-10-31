@@ -22,6 +22,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
 import java.util.Optional;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.BDDMockito.then;
@@ -57,7 +58,7 @@ class AbrigoServiceTest {
     }
 
     @Test
-    void deveriaCadastrarAbrigo() {
+    void deveriaNaoCadastrarAbrigoExistente() {
         //ARRANGE
         var cadastrado = abrigoRepository.existsByNomeOrTelefoneOrEmail(dto.nome(), dto.telefone(), dto.email());
 
@@ -66,6 +67,18 @@ class AbrigoServiceTest {
 
         //ASSERT
         assertThrows(ValidacaoException.class, () -> abrigoService.cadatrar(dto));
+
+    }
+
+    @Test
+    void deveriaCadastrarAbrigo() {
+        //ARRANGE
+        var cadastrado = abrigoRepository.existsByNomeOrTelefoneOrEmail(dto.nome(), dto.telefone(), dto.email());
+
+        //ACT
+        when(cadastrado).thenReturn(false);
+        abrigoService.cadatrar(dto);
+        //ASSERT
         then(abrigoRepository).should().save(new Abrigo(dto));
 
     }
@@ -80,9 +93,6 @@ class AbrigoServiceTest {
         //ASSERT
         then(petRepository).should().findByAbrigo(abrigo);
     }
-
-
-
 
 
 }
