@@ -1,10 +1,8 @@
 package br.com.alura.adopet.api.controller;
 
-import br.com.alura.adopet.api.controller.AbrigoController;
 import br.com.alura.adopet.api.service.AbrigoService;
 import br.com.alura.adopet.api.service.PetService;
 import org.junit.jupiter.api.Test;
-import org.mockito.BDDMockito;
 import org.mockito.InjectMocks;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -37,15 +35,15 @@ public class AbrigoControllerTest {
     @Test
     void testListarAbrigoSucesso() throws Exception {
         var abrigos = abrigoService.listar();
-         when(abrigoService.listar()).thenReturn(abrigos);
+        when(abrigoService.listar()).thenReturn(abrigos);
 
-         mockMvc.perform(get("/workorderfull"))
-                 .andExpect(MockMvcResultMatchers.status().isOk());
+        mockMvc.perform(
+                    get("/abrigos")
+                )
+                .andExpect(
+                        MockMvcResultMatchers.status().isOk()
+                );
 
     }
-
-
-
-
 
 }
